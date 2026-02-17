@@ -9,6 +9,17 @@ const errorHandler = require("./middleware/errorMiddleware");
 const path = require("path");
 
 const userRoutes = require("./routes/userRoutes");
+const baraaRoutes = require("./routes/baraaRoutes");
+const contractRoutes = require("./routes/contractRoutes");
+const establishmentRoutes = require("./routes/establishmentRoutes");
+const leaveRoutes = require("./routes/leaveRoutes");
+const ordersRoutes = require("./routes/ordersRoutes");
+const regLetterRoutes = require("./routes/regLetterRoutes");
+const regRequestRoutes = require("./routes/regRequestRoutes");
+const tahkikFatherRoutes = require("./routes/tahkikFatherRoutes");
+const tahkikZawjRoutes = require("./routes/tahkikZawjRoutes");
+const tajdidTahkikRoutes = require("./routes/tajdidTahkikRoutes");
+const tasfiyaRoutes = require("./routes/tasfiyaRoutes");
 
 const crypto = require("crypto");
 const fs = require("fs");
@@ -27,11 +38,23 @@ app.use(errorHandler);
 
 // Routes Middleware
 app.use("/api/users", userRoutes);
+app.use("/api/baraa", baraaRoutes);
+app.use("/api/contract", contractRoutes);
+app.use("/api/establishment", establishmentRoutes);
+app.use("/api/leave", leaveRoutes);
+app.use("/api/orders", ordersRoutes);
+app.use("/api/regLetter", regLetterRoutes);
+app.use("/api/regRequest", regRequestRoutes);
+app.use("/api/ta7kikFather", tahkikFatherRoutes);
+app.use("/api/ta7kikZawj", tahkikZawjRoutes);
+app.use("/api/tajdidTa7kik", tajdidTahkikRoutes);
+app.use("/api/tasfiya", tasfiyaRoutes);
 
 const PORT = process.env.PORT || 5000;
 
 sequelize
   .authenticate()
+
   .then(() => {
     console.log("MySQL Connected Successfully");
 

@@ -58,40 +58,73 @@ function initModels(sequelize) {
   var users = _users(sequelize, DataTypes);
   var wife_certificate = _wife_certificate(sequelize, DataTypes);
 
-  contract.belongsTo(employee, { as: "ID_employee", foreignKey: "ID"});
-  employee.hasOne(contract, { as: "contract", foreignKey: "ID"});
-  employee_info_form.belongsTo(employee, { as: "emp", foreignKey: "emp_ID"});
-  employee.hasMany(employee_info_form, { as: "employee_info_forms", foreignKey: "emp_ID"});
-  employee_relatives.belongsTo(employee, { as: "emp", foreignKey: "emp_ID"});
-  employee.hasMany(employee_relatives, { as: "employee_relatives", foreignKey: "emp_ID"});
-  employment_certificate.belongsTo(employee, { as: "emp", foreignKey: "emp_ID"});
-  employee.hasMany(employment_certificate, { as: "employment_certificates", foreignKey: "emp_ID"});
-  empoyee_pays.belongsTo(employee, { as: "emp", foreignKey: "emp_ID"});
-  employee.hasMany(empoyee_pays, { as: "empoyee_pays", foreignKey: "emp_ID"});
-  leave_certificate.belongsTo(employee, { as: "emp", foreignKey: "emp_ID"});
-  employee.hasMany(leave_certificate, { as: "leave_certificates", foreignKey: "emp_ID"});
-  orders.belongsTo(employee, { as: "ID_employee", foreignKey: "ID"});
-  employee.hasOne(orders, { as: "order", foreignKey: "ID"});
-  registration_request.belongsTo(employee, { as: "emp", foreignKey: "emp_ID"});
-  employee.hasMany(registration_request, { as: "registration_requests", foreignKey: "emp_ID"});
-  siblings.belongsTo(employee, { as: "emp", foreignKey: "emp_ID"});
-  employee.hasMany(siblings, { as: "siblings", foreignKey: "emp_ID"});
-  ta7kik_father.belongsTo(employee, { as: "emp", foreignKey: "emp_ID"});
-  employee.hasMany(ta7kik_father, { as: "ta7kik_fathers", foreignKey: "emp_ID"});
-  ta7kik_zawj.belongsTo(employee, { as: "emp", foreignKey: "emp_ID"});
-  employee.hasMany(ta7kik_zawj, { as: "ta7kik_zawjs", foreignKey: "emp_ID"});
-  tajdeed_ta7kik.belongsTo(employee, { as: "emp", foreignKey: "emp_ID"});
-  employee.hasMany(tajdeed_ta7kik, { as: "tajdeed_ta7kiks", foreignKey: "emp_ID"});
-  tasfiya.belongsTo(employee, { as: "emp", foreignKey: "emp_ID"});
-  employee.hasMany(tasfiya, { as: "tasfiyas", foreignKey: "emp_ID"});
-  tasree7.belongsTo(employee, { as: "emp", foreignKey: "emp_ID"});
-  employee.hasMany(tasree7, { as: "tasree7s", foreignKey: "emp_ID"});
-  tasree7_mostafeed.belongsTo(employee, { as: "emp", foreignKey: "emp_ID"});
-  employee.hasMany(tasree7_mostafeed, { as: "tasree7_mostafeeds", foreignKey: "emp_ID"});
-  to_concern.belongsTo(employee, { as: "emp", foreignKey: "emp_ID"});
-  employee.hasMany(to_concern, { as: "to_concerns", foreignKey: "emp_ID"});
-  wife_certificate.belongsTo(employee, { as: "employee", foreignKey: "employee_id"});
-  employee.hasMany(wife_certificate, { as: "wife_certificates", foreignKey: "employee_id"});
+  contract.belongsTo(employee, { as: "ID_employee", foreignKey: "ID" });
+  employee.hasOne(contract, { as: "contract", foreignKey: "ID" });
+  employee_info_form.belongsTo(employee, { as: "emp", foreignKey: "emp_ID" });
+  employee.hasMany(employee_info_form, {
+    as: "employee_info_forms",
+    foreignKey: "emp_ID",
+  });
+  employee_relatives.belongsTo(employee, { as: "emp", foreignKey: "emp_ID" });
+  employee.hasMany(employee_relatives, {
+    as: "employee_relatives",
+    foreignKey: "emp_ID",
+  });
+  employment_certificate.belongsTo(employee, {
+    as: "emp",
+    foreignKey: "emp_ID",
+  });
+  employee.hasMany(employment_certificate, {
+    as: "employment_certificates",
+    foreignKey: "emp_ID",
+  });
+  empoyee_pays.belongsTo(employee, { as: "emp", foreignKey: "emp_ID" });
+  employee.hasMany(empoyee_pays, { as: "empoyee_pays", foreignKey: "emp_ID" });
+  leave_certificate.belongsTo(employee, { as: "emp", foreignKey: "emp_ID" });
+  employee.hasMany(leave_certificate, {
+    as: "leave_certificates",
+    foreignKey: "emp_ID",
+  });
+  orders.belongsTo(employee, { as: "ID_employee", foreignKey: "ID" });
+  employee.hasOne(orders, { as: "order", foreignKey: "ID" });
+  registration_request.belongsTo(employee, { as: "emp", foreignKey: "emp_ID" });
+  employee.hasMany(registration_request, {
+    as: "registration_requests",
+    foreignKey: "emp_ID",
+  });
+  siblings.belongsTo(employee, { as: "emp", foreignKey: "emp_ID" });
+  employee.hasMany(siblings, { as: "siblings", foreignKey: "emp_ID" });
+  ta7kik_father.belongsTo(employee, { as: "emp", foreignKey: "emp_ID" });
+  employee.hasMany(ta7kik_father, {
+    as: "ta7kik_fathers",
+    foreignKey: "emp_ID",
+  });
+  ta7kik_zawj.belongsTo(employee, { as: "emp", foreignKey: "emp_ID" });
+  employee.hasMany(ta7kik_zawj, { as: "ta7kik_zawjs", foreignKey: "emp_ID" });
+  tajdeed_ta7kik.belongsTo(employee, { as: "emp", foreignKey: "emp_ID" });
+  employee.hasMany(tajdeed_ta7kik, {
+    as: "tajdeed_ta7kiks",
+    foreignKey: "emp_ID",
+  });
+  tasfiya.belongsTo(employee, { as: "emp", foreignKey: "emp_ID" });
+  employee.hasMany(tasfiya, { as: "tasfiyas", foreignKey: "emp_ID" });
+  tasree7.belongsTo(employee, { as: "emp", foreignKey: "emp_ID" });
+  employee.hasMany(tasree7, { as: "tasree7s", foreignKey: "emp_ID" });
+  tasree7_mostafeed.belongsTo(employee, { as: "emp", foreignKey: "emp_ID" });
+  employee.hasMany(tasree7_mostafeed, {
+    as: "tasree7_mostafeeds",
+    foreignKey: "emp_ID",
+  });
+  to_concern.belongsTo(employee, { as: "emp", foreignKey: "emp_ID" });
+  employee.hasMany(to_concern, { as: "to_concerns", foreignKey: "emp_ID" });
+  wife_certificate.belongsTo(employee, {
+    as: "employee",
+    foreignKey: "employee_id",
+  });
+  employee.hasMany(wife_certificate, {
+    as: "wife_certificates",
+    foreignKey: "employee_id",
+  });
 
   return {
     application_expertise,

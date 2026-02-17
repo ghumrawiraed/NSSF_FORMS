@@ -1,6 +1,7 @@
 const Sequelize = require("sequelize");
+const bcrypt = require("bcryptjs");
 module.exports = function (sequelize, DataTypes) {
-  return sequelize.define(
+  const Users = sequelize.define(
     "users",
     {
       ID: {
@@ -67,10 +68,11 @@ module.exports = function (sequelize, DataTypes) {
         defaultValue: 3,
         comment: "براءة ذمّة",
       },
-      "tasree7 _mostafeed": {
+      tasree7_mostafeed: {
         type: DataTypes.INTEGER,
         allowNull: true,
         defaultValue: 3,
+        field: "tasree7 _mostafeed",
         comment: "تصريح مستفيد",
       },
       ta7deed_ojoor: {
@@ -164,7 +166,6 @@ module.exports = function (sequelize, DataTypes) {
       },
     },
     {
-      sequelize,
       tableName: "users",
       timestamps: false,
       indexes: [
@@ -175,6 +176,28 @@ module.exports = function (sequelize, DataTypes) {
           fields: [{ name: "ID" }],
         },
       ],
+
+      hooks: {
+        // Hash password before insert
+        beforeCreate: async (user) => {
+          if (user.password) {
+            user.password = await bcrypt.hash(user.password, 10);
+          }
+        },
+        // Hash password before update (only if changed)
+        beforeUpdate: async (user) => {
+          if (user.changed("password")) {
+            user.password = await bcrypt.hash(user.password, 10);
+          }
+        },
+      },
     },
   );
+
+  // Method to compare passwords
+
+  Users.prototype.comparePassword = function (enteredPassword) {
+    return bcrypt.compare(enteredPassword, this.password);
+  };
+  return Users;
 };

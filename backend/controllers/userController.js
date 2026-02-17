@@ -68,7 +68,8 @@ const loginUser = asyncHandler(async (req, res) => {
 
   if (!user)
     return res.status(400).json({ message: "User not found, please sign up" });
-
+  console.log(password);
+  console.log(user.password);
   const passwordIsCorrect = await bcrypt.compare(password, user.password);
 
   if (passwordIsCorrect) {

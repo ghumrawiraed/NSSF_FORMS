@@ -1,27 +1,15 @@
 const express = require("express");
 const protect = require("../middleware/authMiddleware");
 
-const {
-  registerUser,
-  loginUser,
-  logoutUser,
-  loginStatus,
-  changePassword,
-} = require("../controllers/userController"); // ctrl + spacebar
-
 const { models } = require("../config/db");
-const { users } = models;
+const { establishment } = models;
 
 const crud = require("../controllers/crudController");
-const controller = crud(users);
+const controller = crud(establishment);
 
 const router = express.Router();
 
-router.post("/register", registerUser);
-router.post("/login", loginUser);
-router.get("/logout", logoutUser);
-router.get("/loggedin", loginStatus);
-router.patch("/changepass", changePassword);
+router.post("/new", controller.create);
 router.get("/:id", controller.getOne);
 router.get("/", controller.getAll);
 router.patch("/:id", controller.update);
