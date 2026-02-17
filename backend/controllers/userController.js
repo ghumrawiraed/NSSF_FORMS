@@ -106,8 +106,6 @@ const logoutUser = asyncHandler(async (req, res) => {
   res.status(200).json({ message: "Successfully logged out" });
 });
 
-
-
 // --------------------------------------------------------------------
 // LOGIN STATUS
 // --------------------------------------------------------------------
@@ -152,10 +150,6 @@ module.exports = {
   registerUser,
   loginUser,
   logoutUser,
-  getUser,
-  deleteUser,
-  getUsers,
   loginStatus,
-  updateUser,
   changePassword,
 };
