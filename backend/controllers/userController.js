@@ -106,27 +106,7 @@ const logoutUser = asyncHandler(async (req, res) => {
   res.status(200).json({ message: "Successfully logged out" });
 });
 
-// --------------------------------------------------------------------
-// GET SINGLE USER
-// --------------------------------------------------------------------
-const getUser = asyncHandler(async (req, res) => {
-  const user = await users.findByPk(req.params.id);
 
-  if (!user) return res.status(404).json({ message: "User not found" });
-
-  res.status(200).json({
-    ID: user.ID,
-    username: user.username,
-  });
-});
-
-// --------------------------------------------------------------------
-// GET ALL USERS
-// --------------------------------------------------------------------
-const getUsers = asyncHandler(async (req, res) => {
-  const users_var = await users.findAll({ order: [["username", "ASC"]] });
-  res.status(200).json(users_var);
-});
 
 // --------------------------------------------------------------------
 // LOGIN STATUS
@@ -141,36 +121,6 @@ const loginStatus = asyncHandler(async (req, res) => {
   } catch {
     return res.json(false);
   }
-});
-
-// --------------------------------------------------------------------
-// DELETE USER
-// --------------------------------------------------------------------
-const deleteUser = asyncHandler(async (req, res) => {
-  const user = await users.findByPk(req.params.id);
-  if (!user) return res.status(400).json({ message: "Invalid user" });
-
-  await user.destroy();
-  res.status(200).json(user);
-});
-
-// --------------------------------------------------------------------
-// UPDATE USER INFO
-// --------------------------------------------------------------------
-const updateUser = asyncHandler(async (req, res) => {
-  a;
-  const user = await users.findByPk(req.user.id);
-
-  if (!user) return res.status(404).json({ message: "User not found" });
-
-  user.username = req.body.username || user.username;
-
-  await user.save();
-
-  res.status(200).json({
-    ID: user.ID,
-    username: user.username,
-  });
 });
 
 // --------------------------------------------------------------------
