@@ -36,7 +36,7 @@ app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(bodyParser.json());
-app.use(cors({ origin: "http://localhost:3000", credentials: true }));
+app.use(cors({ origin: "http://localhost:5173", credentials: true }));
 
 //Error Middleware
 app.use(errorHandler);
@@ -46,12 +46,6 @@ app.use("/api/users", userRoutes);
 app.use("/api/employee", employeeRoutes);
 app.use("/api/baraa", baraaRoutes);
 app.use("/api/contract", contractRoutes);
-app.use("/api/establishment", establishmentRoutes);
-app.use("/api/leave", leaveRoutes);
-app.use("/api/orders", ordersRoutes);
-app.use("/api/regLetter", regLetterRoutes);
-app.use("/api/regRequest", regRequestRoutes);
-app.use("/api/ta7kikFather", tahkikFatherRoutes);
 app.use("/api/ta7kikZawj", tahkikZawjRoutes);
 app.use("/api/tajdidTa7kik", tajdidTahkikRoutes);
 app.use("/api/tasfiya", tasfiyaRoutes);
