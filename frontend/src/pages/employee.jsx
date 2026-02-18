@@ -120,6 +120,38 @@ const EmployeeForm = () => {
                   
                 />
               </div>
+
+              <div>
+                <label className="block mb-2 text-gray-700 dark:text-white">الوضع العائلي</label>
+                <select
+                  name="marital_status"
+                  value={formData.marital_status}
+                  onChange={handleChange}
+                   className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white text-right"
+                  
+                >
+                  <option value="">اختر الوضع العائلي</option>
+                  <option value="1">أعزب</option>
+                  <option value="2">متزوج</option>
+                  <option value="3">أرمل</option>
+                  <option value="4">مطلّق</option>
+                  <option value="5">هاجر</option>
+                </select>
+              </div>
+    
+              <div>
+                <label className="block mb-2 text-gray-700 dark:text-white">اسم الأم وشهرتها</label>
+                <input
+                  type="text"
+                  name="mother_name"
+                  value={formData.mother_name}
+                  onChange={handleChange}
+                   className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white text-right"
+                  
+                />
+              </div>
+
+
             </div>
           )}
 

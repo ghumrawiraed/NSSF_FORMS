@@ -1,7 +1,8 @@
 @import "tailwindcss";
 
 :root {  
-  font-family: "Cairo", system-ui, sans-serif;
+font-family: "Cairo", system-ui, sans-serif; 
+   /* font-family: "JannaLT", system-ui, sans-serif;  */
   line-height: 1.5;
   font-weight: 400;
 
