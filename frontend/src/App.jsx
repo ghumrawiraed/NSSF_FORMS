@@ -4,7 +4,7 @@ import "react-toastify/dist/ReactToastify.css";
 //import "./App.css";
 import Login from "./pages/login";
 import Layout from "./components/layout/layout";
-import EmployeeForm from "./pages/employee";
+import EmployeeForm from "./pages/employee/employee";
 
 function App() {
   return (

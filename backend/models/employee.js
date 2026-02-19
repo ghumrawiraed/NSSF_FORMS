@@ -192,7 +192,7 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: true,
       comment: "الاجر بتاريخ دخول العمل"
     },
-    fiirst_salary_text: {
+    first_salary_text: {
       type: DataTypes.TEXT,
       allowNull: true,
       comment: "الراتب الاول بالكلمات"
