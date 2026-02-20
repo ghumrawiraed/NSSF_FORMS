@@ -83,7 +83,7 @@ module.exports = function(sequelize, DataTypes) {
       comment: "فئة الدم"
     },
     record_no: {
-      type: DataTypes.BIGINT,
+      type: DataTypes.INTEGER,
       allowNull: true,
       comment: "رقم السجل"
     },
@@ -148,7 +148,7 @@ module.exports = function(sequelize, DataTypes) {
       comment: "تاريخ دخول العمل"
     },
     work_start_note: {
-      type: DataTypes.DATE,
+      type: DataTypes.TEXT,
       allowNull: true,
       comment: "ملاحظات"
     },
@@ -158,7 +158,7 @@ module.exports = function(sequelize, DataTypes) {
       comment: "تاريخ انتهاء عمله"
     },
     work_end_note: {
-      type: DataTypes.DATE,
+      type: DataTypes.TEXT,
       allowNull: true,
       comment: "ملاحظات"
     },
@@ -178,7 +178,7 @@ module.exports = function(sequelize, DataTypes) {
       comment: "عمل الاجير الحالي"
     },
     current_salary: {
-      type: DataTypes.BIGINT,
+      type: DataTypes.INTEGER,
       allowNull: true,
       comment: "الراتب الحالي (ل.ل)"
     },
@@ -188,7 +188,7 @@ module.exports = function(sequelize, DataTypes) {
       comment: "الراتب بالكلمات"
     },
     first_salary: {
-      type: DataTypes.BIGINT,
+      type: DataTypes.INTEGER,
       allowNull: true,
       comment: "الاجر بتاريخ دخول العمل"
     },
@@ -399,20 +399,8 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: true,
       comment: "عدد أيام الإجازة المرضية"
     },
-    dep_id: {
-      type: DataTypes.BIGINT,
-      allowNull: true
-    },
-    type_id: {
-      type: DataTypes.INTEGER,
-      allowNull: true
-    },
     status: {
       type: DataTypes.TEXT,
-      allowNull: true
-    },
-    area_id: {
-      type: DataTypes.INTEGER,
       allowNull: true
     },
     vacation_day: {

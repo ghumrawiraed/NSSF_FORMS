@@ -51,9 +51,9 @@ personal:[
 work:[
   { name: "date_in", label: "تاريخ الانتساب", type: "date" },
   { name: "work_start_date", label: "تاريخ دخول العمل", type: "date" },
-  { name: "work_start_note", label: "ملاحظات", type: "date" },
+  { name: "work_start_note", label: "ملاحظات", type: "text" },
   { name: "work_end_date", label: "تاريخ انتهاء عمله", type: "date" },
-  { name: "work_end_note", label: "ملاحظات", type: "date" },
+  { name: "work_end_note", label: "ملاحظات", type: "text" },
   { name: "hours_per_month", label: "عدد ساعات عمله في الشهر", type: "number" },
   { name: "current_salary", label: "الراتب الحالي (ل.ل)", type: "number" },
   { name: "text_salary", label: "الراتب بالكلمات", type: "text" },

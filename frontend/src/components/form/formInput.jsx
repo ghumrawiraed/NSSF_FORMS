@@ -1,11 +1,11 @@
-const FormInput = ({ label, name, type = "text", register, errors }) => {
+const FormInput = ({ label, name, type ,register, errors, ...rest }) => {
   return (
     <div className="flex flex-col">
       <label className="mb-1 text-sm font-medium">{label}</label>
 
       <input
-        type={type}
-        {...register(name)}
+     {...register(name, type === "number" ? { valueAsNumber: true } : {})}
+      {...rest}
         className="border rounded px-3 py-2"
       />
 
