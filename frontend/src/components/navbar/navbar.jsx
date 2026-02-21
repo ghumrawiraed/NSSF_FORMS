@@ -8,21 +8,21 @@ const Navbar = () => {
     {
       label: "ملف 1",
       items: [
-        { name: "الموظفين",          to: "/employee" },
-        { name: "تصريح عن الزوجة",   to: "/wife-declaration" },
+        { name: "الموظفين", to: "/employee/list" },
+        { name: "تصريح عن الزوجة", to: "/wife-declaration" },
         { name: "إعلام استخدام أجير", to: "/hire-notice" },
-        { name: "إعلام ترك أجير",     to: "/leave-notice" },
-        { name: "تصريح عن حادث",     to: "/accident-report" },
+        { name: "إعلام ترك أجير", to: "/leave-notice" },
+        { name: "تصريح عن حادث", to: "/accident-report" },
       ],
     },
     {
       label: "ملف 2",
       items: [
-        { name: "طلب براءة ذمة",             to: "/clearance-request" },
-        { name: "تصريح عن مستفيد",           to: "/beneficiary-declaration" },
+        { name: "طلب براءة ذمة", to: "/clearance-request" },
+        { name: "تصريح عن مستفيد", to: "/beneficiary-declaration" },
         { name: "تصفية تعويض نهاية الخدمة", to: "/end-service" },
-        { name: "التصريح الإسمي السنوي",     to: "/annual-declaration" },
-        { name: "بيان بأسماء المستخدمين",   to: "/users-list" },
+        { name: "التصريح الإسمي السنوي", to: "/annual-declaration" },
+        { name: "بيان بأسماء المستخدمين", to: "/users-list" },
       ],
     },
     {
@@ -30,19 +30,19 @@ const Navbar = () => {
       items: [
         { name: "بيان معلومات عن المستخدم", to: "/user-info" },
         { name: "تحقيق للإستفادة عن الوالد", to: "/parent-investigation" },
-        { name: "طلب تسجيل مستخدم",         to: "/register-user" },
-        { name: "إفادة لمن يهمه الأمر",      to: "/certificate" },
-        { name: "طلب تجديد تحقيق إجتماعي",  to: "/renew-investigation" },
+        { name: "طلب تسجيل مستخدم", to: "/register-user" },
+        { name: "إفادة لمن يهمه الأمر", to: "/certificate" },
+        { name: "طلب تجديد تحقيق إجتماعي", to: "/renew-investigation" },
       ],
     },
     {
       label: "ملف 4",
       items: [
-        { name: "كتاب تسجيل مستخدمين",      to: "/register-letter" },
-        { name: "إفادات العمل",             to: "/work-certificates" },
-        { name: "عقد عمل",                   to: "/contract" },
-        { name: "طلب توظيف",                 to: "/job-request" },
-        { name: "تحقيق عن زوج المضمونة",    to: "/husband-investigation" },
+        { name: "كتاب تسجيل مستخدمين", to: "/register-letter" },
+        { name: "إفادات العمل", to: "/work-certificates" },
+        { name: "عقد عمل", to: "/contract" },
+        { name: "طلب توظيف", to: "/job-request" },
+        { name: "تحقيق عن زوج المضمونة", to: "/husband-investigation" },
       ],
     },
   ];
@@ -50,7 +50,6 @@ const Navbar = () => {
   return (
     <nav className="fixed top-0 left-0 w-full z-30 bg-transparent backdrop-blur-sm">
       <div className="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
-        
         {/* Logo */}
         <Link
           to="/"

@@ -5,20 +5,21 @@ import { BACKEND_URL } from "./authService";
 const API_URL = `${BACKEND_URL}/api/employee`;
 
 //----------------------------------------------------
-//  A D D    N E W   T R I P
+//  A D D    N E W   E M P L O Y E E
 //----------------------------------------------------
 export const registerEmp = async (empData) => {
   try {
-    console.log(empData)
-    const response = await axios.post(`${API_URL}/new`,
-      
+    console.log(empData);
+    const response = await axios.post(
+      `${API_URL}/new`,
+
       empData,
-       {
+      {
         headers: {
           "Content-Type": "application/json",
         },
         withCredentials: true,
-      }
+      },
     );
 
     if (response.status === 200) {
@@ -28,14 +29,11 @@ export const registerEmp = async (empData) => {
     return response.data;
   } catch (error) {
     const message =
-      error.response?.data?.message ||
-      error.message ||
-      error.toString();
+      error.response?.data?.message || error.message || error.toString();
 
     toast.error(message);
   }
 };
-
 
 //----------------------------------------------------
 //    G E T  A L L   T R I P S

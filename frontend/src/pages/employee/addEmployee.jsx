@@ -19,70 +19,70 @@ const EmployeeForm = () => {
   });
 
   const onSubmit = async (data) => {
-  console.log("Submitted Data:", data); // debug
+    console.log("Submitted Data:", data); // debug
 
-  const cleanedData = { ...data };
+    const cleanedData = { ...data };
 
-  // --- Number fields ---
-  const numberFields = [
-    "other_allowance",
-    "nssf_no",
-    "hours_per_month",
-    "current_salary",
-    "first_salary",
-    "financial",
-    "id_no",
-    "child_number",
-    "record_no",
-    "w_id_no",
-    "w_record_no",
-    "med_days",
-    "days_off",
-    "var_days",
-    "ministry code",
-    "transport",
-    "family_allowance"
-  ];
+    // --- Number fields ---
+    const numberFields = [
+      "other_allowance",
+      "nssf_no",
+      "hours_per_month",
+      "current_salary",
+      "first_salary",
+      "financial",
+      "id_no",
+      "child_number",
+      "record_no",
+      "w_id_no",
+      "w_record_no",
+      "med_days",
+      "days_off",
+      "var_days",
+      "ministry_code",
+      "transport",
+      "family_allowance",
+    ];
 
-  numberFields.forEach((field) => {
-    if (cleanedData[field] === "" || cleanedData[field] === undefined) {
-      cleanedData[field] = null; // empty → null
-    } else {
-      cleanedData[field] = Number(cleanedData[field]); // string → number
+    numberFields.forEach((field) => {
+      if (cleanedData[field] === "" || cleanedData[field] === undefined) {
+        cleanedData[field] = null; // empty → null
+      } else {
+        cleanedData[field] = Number(cleanedData[field]); // string → number
+      }
+    });
+
+    // --- Date fields ---
+    const dateFields = [
+      "birthdate",
+      "mother_brithdate",
+      "father_birthdate",
+      "date_in",
+      "work_start_date",
+      "work_end_date",
+      "work_licence_date",
+      "w_birthdate",
+      "nssf_date",
+      // add any other date field names here
+    ];
+
+    dateFields.forEach((field) => {
+      if (cleanedData[field] === "" || cleanedData[field] === undefined) {
+        cleanedData[field] = null; // empty → null
+      } else {
+        cleanedData[field] = new Date(cleanedData[field]); // string → Date object
+      }
+    });
+
+    console.log("Cleaned Data:", cleanedData); // check before sending
+
+    try {
+      await registerEmp(cleanedData);
+      toast.success("Employee Added Successfully");
+    } catch (error) {
+      console.log(error.message);
     }
-  });
-
-  // --- Date fields ---
-  const dateFields = [
-    "birthdate",
-    "mother_brithdate",
-    "father_birthdate",
-    "date_in",
-    "work_start_date",
-    "work_end_date",
-    "work_licence_date",
-    "w_birthdate",
-    "nssf_date",
-    // add any other date field names here
-  ];
-
-  dateFields.forEach((field) => {
-    if (cleanedData[field] === "" || cleanedData[field] === undefined) {
-      cleanedData[field] = null; // empty → null
-    } else {
-      cleanedData[field] = new Date(cleanedData[field]); // string → Date object
-    }
-  });
-
-  console.log("Cleaned Data:", cleanedData); // check before sending
-
-  try {
-    await registerEmp(cleanedData);
-    toast.success("Employee Added Successfully");
-  } catch (error) {
-    console.log(error.message);
-  }
-};
+  };
 
   return (
     <div
@@ -95,7 +95,6 @@ const EmployeeForm = () => {
         </h2>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
-          
           {/* ALL Sections Rendered (Only One Visible) */}
           {Object.keys(formSections).map((sectionKey) => (
             <div
@@ -124,7 +123,9 @@ const EmployeeForm = () => {
                         {...field}
                         register={register}
                         errors={errors}
-                        {...(field.type === "number" ? { valueAsNumber: true } : {})}
+                        {...(field.type === "number"
+                          ? { valueAsNumber: true }
+                          : {})}
                       />
                     </div>
                   );
@@ -172,7 +173,6 @@ const EmployeeForm = () => {
           >
             حفظ الموظف
           </button>
-
         </form>
       </div>
     </div>

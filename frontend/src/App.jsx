@@ -4,19 +4,18 @@ import "react-toastify/dist/ReactToastify.css";
 //import "./App.css";
 import Login from "./pages/login";
 import Layout from "./components/layout/layout";
-import EmployeeForm from "./pages/employee/employee";
+import EmployeeForm from "./pages/employee/addEmployee";
 
 function App() {
   return (
     <BrowserRouter>
-    
       <Routes>
-        <Route path = "/" element={<Layout />}>
-           <Route path="/login" element={<Login />}></Route>
-           <Route path="/employee" element={<EmployeeForm />}></Route>
+        <Route path="/" element={<Layout />}>
+          <Route path="/login" element={<Login />}></Route>
+          <Route path="/employee/add" element={<EmployeeForm />}></Route>
         </Route>
       </Routes>
-    
+
       <ToastContainer />
     </BrowserRouter>
   );

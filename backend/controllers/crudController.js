@@ -2,10 +2,11 @@ module.exports = (Model) => {
   return {
     async create(req, res) {
       try {
-        console.log(req.body)
+        console.log(req.body);
         const item = await Model.create(req.body);
         res.json(item);
       } catch (err) {
+        console.log(err.message);
         res.status(500).json({ error: err.message });
       }
     },
