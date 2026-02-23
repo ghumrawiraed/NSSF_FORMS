@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { formSections } from "./formSections";
 import FormInput from "../../components/form/formInput";
@@ -17,7 +18,8 @@ const EmployeeForm = () => {
     shouldUnregister: false,
     defaultValues: {}, // optional but good practice
   });
-
+  const navigate = useNavigate();
+  
   const onSubmit = async (data) => {
     console.log("Submitted Data:", data); // debug
 
@@ -79,6 +81,7 @@ const EmployeeForm = () => {
     try {
       await registerEmp(cleanedData);
       toast.success("Employee Added Successfully");
+      navigate(-1)
     } catch (error) {
       console.log(error.message);
     }

@@ -26,6 +26,7 @@ const EmployeeList = () => {
   const userID = useSelector(selectUserID);
 
   const delEmployee = async (id) => {
+    console.log("ID:", id)
     await dispatch(deleteEmployee(id));
     await dispatch(fetchEmployees());
     navigate(-1);
@@ -104,12 +105,12 @@ const EmployeeList = () => {
   return (
     <div className="w-full rounded-lg shadow  mt-12 ml-8 p-6">
       <div className="flex">
-        <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white mb-2 mr-4 pt-2">
+        <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white mb-2 mx-4 pt-2">
           لائحة الموظفين
         </h1>
         <Link
           to="/employee/add"
-          className="mt-1 px-4 py-2 bg-[#701414] text-white font-normal rounded-lg dark:hover:bg-[#9c4343] transition duration-200 shadow"
+          className="mt-1 ml-1  px-4 py-2 bg-[#701414] text-white font-normal rounded-lg dark:hover:bg-[#9c4343] transition duration-200 shadow"
         >
           إضافة موظف
         </Link>
@@ -161,7 +162,7 @@ const EmployeeList = () => {
             <tbody>
               {currentItems.map((emp, index) => {
                 const {
-                  id,
+                  ID,
                   nssf_no,
                   first_name,
                   middle_name,
@@ -172,7 +173,7 @@ const EmployeeList = () => {
                 } = emp;
                 return (
                   <tr
-                    key={id}
+                    key={ID}
                     className=" text-black bg-white/50 border-b dark:bg-gray-800/60 dark:text-gray-50 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600"
                   >
                     <td className="px-3 py-2">{index + 1}</td>
@@ -187,18 +188,18 @@ const EmployeeList = () => {
                     
                     <td className="px-3 py-2">{position}</td>                    
                     <td className="px-3 py-2">{status}</td>
-                    <td>  
-                      <Link to={`emplyees/${id}`} title="Edit Empolyee">
+
+                   <td className="px-3 py-2 flex items-center gap-3">
+                      <Link to={`emplyees/${ID}`} title="Edit Employee">
                         <FaEdit
                           size={20}
                           className="text-green-600 hover:text-green-800"
                         />
                       </Link>
+
                       <button
                         title="Delete Employee"
-                        onClick={() => {
-                          confirmDelete(id);
-                        }}
+                        onClick={() => confirmDelete(ID)}
                       >
                         <FaTrashAlt
                           size={18}

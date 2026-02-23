@@ -37,7 +37,7 @@ export const deleteEmployee = createAsyncThunk(
   async (id, thunkAPI) => {
     try {
       console.log("deleteEmployee Slice :", id);
-      return await employeeService.deleteEmployee(id);
+      return await employeeService.deleteEmp(id);
     } catch (error) {
       const message =
         (error.response &&

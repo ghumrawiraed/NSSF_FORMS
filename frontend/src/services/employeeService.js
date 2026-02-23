@@ -47,7 +47,7 @@ const getEmps = async () => {
 //----------------------------------------------------
 //    G E T  S I N G L E   T R I P
 //----------------------------------------------------
-export const getemp = async (id) => {
+export const getEmp = async (id) => {
   const reponse = await axios.get(API_URL + "/" + id);
   return reponse.data;
 };
@@ -55,7 +55,8 @@ export const getemp = async (id) => {
 //----------------------------------------------------
 //    D E L E T E    T R I P
 //----------------------------------------------------
-const deleteemp = async (id) => {
+const deleteEmp = async (id) => {
+  console.log("id:", id )
   const reponse = await axios.delete(API_URL + "/" + id);
   return reponse.data;
 };
@@ -64,7 +65,7 @@ const deleteemp = async (id) => {
 //    U P D A T E   T R I P
 //----------------------------------------------------
 
-export const updateemp = async (id, empData) => {
+export const updateEmp = async (id, empData) => {
   try {
     const formData = new FormData();
     formData.append("title", empData.title);
@@ -99,9 +100,9 @@ export const updateemp = async (id, empData) => {
 const empService = {
   registerEmp,
   getEmps,
-  getemp,
-  deleteemp,
-  updateemp,
+  getEmp,
+  deleteEmp,
+  updateEmp,
 };
 
 export default empService;
