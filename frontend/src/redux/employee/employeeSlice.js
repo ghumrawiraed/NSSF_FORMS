@@ -15,7 +15,7 @@ export const fetchEmployees = createAsyncThunk(
   "emplyees/getAll",
   async (_, thunkAPI) => {
     try {
-     console.log("Starting API call  slice");
+      console.log("Starting API call  slice");
       return await employeeService.getEmps();
     } catch (error) {
       const message =
@@ -56,7 +56,7 @@ export const getEmployee = createAsyncThunk(
   "emplyees/getEmployee",
   async (id, thunkAPI) => {
     try {
-      return await employeeService.getEmployee(id);
+      return await employeeService.getEmp(id);
     } catch (error) {
       const message =
         (error.response &&

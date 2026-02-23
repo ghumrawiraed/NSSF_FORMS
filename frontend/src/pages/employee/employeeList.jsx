@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { FaEdit, FaTrashAlt} from "react-icons/fa";
+import { FaEdit, FaTrashAlt } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import {
@@ -26,7 +26,7 @@ const EmployeeList = () => {
   const userID = useSelector(selectUserID);
 
   const delEmployee = async (id) => {
-    console.log("ID:", id)
+    console.log("ID:", id);
     await dispatch(deleteEmployee(id));
     await dispatch(fetchEmployees());
     navigate(-1);
@@ -46,6 +46,13 @@ const EmployeeList = () => {
               </p>
               <div className="flex justify-center gap-4">
                 <button
+                  onClick={onClose}
+                  className="px-4 py-2 bg-gray-300 text-white rounded hover:bg-gray-400 transition"
+                >
+                  إلغاء
+                </button>
+
+                <button
                   onClick={() => {
                     delEmployee(id);
                     onClose();
@@ -53,12 +60,6 @@ const EmployeeList = () => {
                   className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition"
                 >
                   حذف
-                </button>
-                <button
-                  onClick={onClose}
-                  className="px-4 py-2 bg-gray-300 text-white rounded hover:bg-gray-400 transition"
-                >
-                  إلغاء
                 </button>
               </div>
             </div>
@@ -70,12 +71,10 @@ const EmployeeList = () => {
 
   const { employees, loading, error } = useSelector((state) => state.employee);
   useEffect(() => {
-    console.log("Effect running")
+    console.log("Effect running");
     dispatch(fetchEmployees());
   }, [dispatch]);
 
-
-  
   //   Begin Pagination
   const [currentItems, setCurrentItems] = useState([]);
   const [pageCount, setPageCount] = useState(0);
@@ -89,7 +88,8 @@ const EmployeeList = () => {
   }, [itemOffset, itemsPerPage, filteredEmployees]);
 
   const handlePageClick = (event) => {
-    const newOffset = (event.selected * itemsPerPage) % filteredEmployees.length;
+    const newOffset =
+      (event.selected * itemsPerPage) % filteredEmployees.length;
     setItemOffset(newOffset);
   };
   //   End Pagination
@@ -97,11 +97,11 @@ const EmployeeList = () => {
   useEffect(() => {
     console.log("FROM USEEFFECT:", employees);
     if (employees && employees.length > 0) {
-       dispatch(FILTER_EMPLOYEES({ employees, search }));
-    } 
+      dispatch(FILTER_EMPLOYEES({ employees, search }));
+    }
   }, [employees, search, dispatch]);
 
-  console.log("employees:",employees)
+  console.log("employees:", employees);
   return (
     <div className="w-full rounded-lg shadow  mt-12 ml-8 p-6">
       <div className="flex">
@@ -118,14 +118,12 @@ const EmployeeList = () => {
         <Search value={search} onChange={(e) => setSearch(e.target.value)} />
       </div>
       <div className="overflow-x-auto">
-   
-
-     {!employees ? (
-      <p>Loading...</p>
-    ) : employees.length === 0 ? (
-      <p className="text-gray-400 mt-2">
-        -- No employees found, please add one...
-      </p>
+        {!employees ? (
+          <p>Loading...</p>
+        ) : employees.length === 0 ? (
+          <p className="text-gray-400 mt-2">
+            -- No employees found, please add one...
+          </p>
         ) : (
           <table className="min-w-full text-sm text-left text-gray-500 dark:text-gray-200 mt-2">
             <thead className="text-[11px] uppercase bg-gray-50/50 text-black dark:bg-gray-900 dark:text-gray-200 ">
@@ -153,7 +151,7 @@ const EmployeeList = () => {
                 </th>
                 <th scope="col" className="px-6 py-3">
                   الوضع
-                </th>               
+                </th>
                 <th scope="col" className="px-6 py-3">
                   Actions
                 </th>
@@ -168,7 +166,7 @@ const EmployeeList = () => {
                   middle_name,
                   family_name,
                   birthdate,
-                  position,                  
+                  position,
                   status,
                 } = emp;
                 return (
@@ -185,12 +183,12 @@ const EmployeeList = () => {
                       {" "}
                       {new Date(birthdate).toLocaleDateString("en-GB")}
                     </td>
-                    
-                    <td className="px-3 py-2">{position}</td>                    
+
+                    <td className="px-3 py-2">{position}</td>
                     <td className="px-3 py-2">{status}</td>
 
-                   <td className="px-3 py-2 flex items-center gap-3">
-                      <Link to={`emplyees/${ID}`} title="Edit Employee">
+                    <td className="px-3 py-2 flex items-center gap-3">
+                      <Link to={`/employee/${ID}`} title="Edit Employee">
                         <FaEdit
                           size={20}
                           className="text-green-600 hover:text-green-800"

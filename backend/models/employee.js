@@ -114,32 +114,32 @@ module.exports = function (sequelize, DataTypes) {
         allowNull: true,
         comment: "المذهب",
       },
-      "cr-mohafaza": {
+      cr_mohafaza: {
         type: DataTypes.TEXT,
         allowNull: true,
         comment: "المحافظة",
       },
-      "cr-kadaa": {
+      cr_kadaa: {
         type: DataTypes.TEXT,
         allowNull: true,
         comment: "القضاء",
       },
-      "cr-city": {
+      cr_city: {
         type: DataTypes.TEXT,
         allowNull: true,
         comment: "المدينة أو القرية",
       },
-      "cr-7ay": {
+      cr_7ay: {
         type: DataTypes.TEXT,
         allowNull: true,
         comment: "الحي",
       },
-      "cr-street": {
+      cr_street: {
         type: DataTypes.TEXT,
         allowNull: true,
         comment: "الشارع",
       },
-      "cr-building": {
+      cr_building: {
         type: DataTypes.TEXT,
         allowNull: true,
         comment: "بناية وطابق",
