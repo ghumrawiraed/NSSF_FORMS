@@ -1,29 +1,31 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  filteredTrips: [],
+  filteredEmployees: [],
 };
 
-const tripFilterSlice = createSlice({
+const employeeFilterSlice = createSlice({
   name: "filter",
   initialState,
   reducers: {
-    FILTER_TRIPS(state, action) {
+    FILTER_EMPLOYEES(state, action) {
       console.log("FROM FILTER SLICE:",action.payload)
-      const { trips, search } = action.payload;
-      const tempTrips = trips.filter((trip) =>
-        trip.title.toLowerCase().includes(search.toLowerCase())
+      const { employees, search } = action.payload;
+      const tempEmployees = employees.filter((emp) =>        
+       emp.first_name?.toLowerCase().includes(search.toLowerCase()) ||
+       emp.family_name?.toLowerCase().includes(search.toLowerCase()) ||
+       emp.nssf_no?.toString().includes(search)
       );
       
-      console.log("temptrips:",tempTrips)
+      console.log("tempemployees:",tempEmployees)
       
-      state.filteredTrips = tempTrips;
+      state.filteredEmployees = tempEmployees;
     },
   },
 });
 
-export const { FILTER_TRIPS } = tripFilterSlice.actions;
+export const { FILTER_EMPLOYEES } = employeeFilterSlice.actions;
 
-export const selectFilteredTrips = (state) => state.tripFilter.filteredTrips;
+export const selectFilteredEmployees = (state) => state.employeeFilter.filteredEmployees;
 
-export default tripFilterSlice.reducer;
+export default employeeFilterSlice.reducer;

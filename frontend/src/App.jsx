@@ -5,6 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Login from "./pages/login";
 import Layout from "./components/layout/layout";
 import EmployeeForm from "./pages/employee/addEmployee";
+import EmployeeList from "./pages/employee/employeeList";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route path="/login" element={<Login />}></Route>
+          <Route path="/employee/list" element={<EmployeeList />}></Route>
           <Route path="/employee/add" element={<EmployeeForm />}></Route>
         </Route>
       </Routes>

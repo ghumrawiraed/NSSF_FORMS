@@ -1,34 +1,33 @@
 import React, { useState, useEffect } from "react";
-import { FaEdit, FaTrashAlt, FaBusAlt, FaUmbrellaBeach } from "react-icons/fa";
+import { FaEdit, FaTrashAlt} from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import { AiOutlinePicture } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import {
-  fetchEmplyees,
-  deleteEmplyee,
-} from "../../../redux/features/emplyees/tripSlice";
+  fetchEmployees,
+  deleteEmployee,
+} from "../../redux/employee/employeeSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
-import Search from "../../../components/search/Search";
+import Search from "../../components/search/Search";
 import {
-  FILTER_TRIPS,
-  selectFilteredEmplyees,
-} from "../../../redux/features/emplyees/filterSlice";
+  FILTER_EMPLOYEES,
+  selectFilteredEmployees,
+} from "../../redux/employee/employeeFilterSlice";
 
-import { selectUserID } from "../../../redux/features/auth/authSlice";
+import { selectUserID } from "../../redux/auth/authSlice";
 import ReactPaginate from "react-paginate";
 
-const EmplyeesList = () => {
+const EmployeeList = () => {
   const [search, setSearch] = useState("");
-  const filteredEmplyees = useSelector(selectFilteredEmplyees);
+  const filteredEmployees = useSelector(selectFilteredEmployees);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const userID = useSelector(selectUserID);
 
-  const delEmplyee = async (id) => {
-    await dispatch(deleteEmplyee(id));
-    // await dispatch(fetchEmplyees());
+  const delEmployee = async (id) => {
+    await dispatch(deleteEmployee(id));
+    await dispatch(fetchEmployees());
     navigate(-1);
   };
 
@@ -39,26 +38,26 @@ const EmplyeesList = () => {
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
             <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg w-96 text-center">
               <h1 className="text-lg font-bold text-gray-900 dark:text-white mb-4">
-                Delete Emplyee
+                حذف موظف
               </h1>
               <p className="text-gray-700 dark:text-gray-300 mb-6">
-                Are you sure you want to delete this Emplyee?
+                هل انت متأكد انك تريد حذف الموظف؟
               </p>
               <div className="flex justify-center gap-4">
                 <button
                   onClick={() => {
-                    delEmplyee(id);
+                    delEmployee(id);
                     onClose();
                   }}
                   className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition"
                 >
-                  Delete
+                  حذف
                 </button>
                 <button
                   onClick={onClose}
-                  className="px-4 py-2 bg-gray-300 text-black rounded hover:bg-gray-400 transition"
+                  className="px-4 py-2 bg-gray-300 text-white rounded hover:bg-gray-400 transition"
                 >
-                  Cancel
+                  إلغاء
                 </button>
               </div>
             </div>
@@ -68,11 +67,14 @@ const EmplyeesList = () => {
     });
   };
 
-  const { emplyees, loading, error } = useSelector((state) => state.trip);
+  const { employees, loading, error } = useSelector((state) => state.employee);
   useEffect(() => {
-    dispatch(fetchEmplyees());
+    console.log("Effect running")
+    dispatch(fetchEmployees());
   }, [dispatch]);
 
+
+  
   //   Begin Pagination
   const [currentItems, setCurrentItems] = useState([]);
   const [pageCount, setPageCount] = useState(0);
@@ -81,43 +83,48 @@ const EmplyeesList = () => {
 
   useEffect(() => {
     const endOffset = itemOffset + itemsPerPage;
-    setCurrentItems(filteredEmplyees.slice(itemOffset, endOffset));
-    setPageCount(Math.ceil(filteredEmplyees.length / itemsPerPage));
-  }, [itemOffset, itemsPerPage, filteredEmplyees]);
+    setCurrentItems(filteredEmployees.slice(itemOffset, endOffset));
+    setPageCount(Math.ceil(filteredEmployees.length / itemsPerPage));
+  }, [itemOffset, itemsPerPage, filteredEmployees]);
 
   const handlePageClick = (event) => {
-    const newOffset = (event.selected * itemsPerPage) % filteredEmplyees.length;
+    const newOffset = (event.selected * itemsPerPage) % filteredEmployees.length;
     setItemOffset(newOffset);
   };
   //   End Pagination
 
   useEffect(() => {
-    console.log("FROM USEEFFECT:", emplyees);
-    dispatch(FILTER_TRIPS({ emplyees, search }));
-  }, [emplyees, search, dispatch]);
+    console.log("FROM USEEFFECT:", employees);
+    if (employees && employees.length > 0) {
+       dispatch(FILTER_EMPLOYEES({ employees, search }));
+    } 
+  }, [employees, search, dispatch]);
 
+  console.log("employees:",employees)
   return (
     <div className="w-full rounded-lg shadow  mt-12 ml-8 p-6">
       <div className="flex">
         <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white mb-2 mr-4 pt-2">
-          Emplyees List
+          لائحة الموظفين
         </h1>
         <Link
-          to="/admin/emplyees/new"
+          to="/employee/add"
           className="mt-1 px-4 py-2 bg-[#701414] text-white font-normal rounded-lg dark:hover:bg-[#9c4343] transition duration-200 shadow"
         >
-          Add Emplyee
+          إضافة موظف
         </Link>
 
         <Search value={search} onChange={(e) => setSearch(e.target.value)} />
       </div>
       <div className="overflow-x-auto">
-        {!emplyees && <p>Loading...</p>}
+   
 
-        {emplyees.length === 0 ? (
-          <p className=" text-gray-400 mt-2">
-            -- No emplyees found, please add a trip...
-          </p>
+     {!employees ? (
+      <p>Loading...</p>
+    ) : employees.length === 0 ? (
+      <p className="text-gray-400 mt-2">
+        -- No employees found, please add one...
+      </p>
         ) : (
           <table className="min-w-full text-sm text-left text-gray-500 dark:text-gray-200 mt-2">
             <thead className="text-[11px] uppercase bg-gray-50/50 text-black dark:bg-gray-900 dark:text-gray-200 ">
@@ -126,101 +133,69 @@ const EmplyeesList = () => {
                   S/N
                 </th>
                 <th scope="col" className="px-6 py-3">
-                  Title
+                  رقم الضمان
                 </th>
                 <th scope="col" className="px-6 py-3">
-                  destination
+                  الأسم
                 </th>
                 <th scope="col" className="px-6 py-3">
-                  demographic
+                  اسم الأب
                 </th>
                 <th scope="col" className="px-6 py-3">
-                  Start Date
+                  الشهرة
                 </th>
                 <th scope="col" className="px-6 py-3">
-                  End Date
+                  تاريخ الميلاد
                 </th>
                 <th scope="col" className="px-6 py-3">
-                  Price/Emplyee
+                  عمل الأجير
                 </th>
                 <th scope="col" className="px-6 py-3">
-                  Organizer
-                </th>
-                <th scope="col" className="px-6 py-3">
-                  Status
-                </th>
+                  الوضع
+                </th>               
                 <th scope="col" className="px-6 py-3">
                   Actions
                 </th>
               </tr>
             </thead>
             <tbody>
-              {currentItems.map((trip, index) => {
+              {currentItems.map((emp, index) => {
                 const {
                   id,
-                  title,
-                  destination,
-                  demographic,
-                  startDate,
-                  endDate,
-                  pricePerPerson,
-                  organizer,
+                  nssf_no,
+                  first_name,
+                  middle_name,
+                  family_name,
+                  birthdate,
+                  position,                  
                   status,
-                } = trip;
+                } = emp;
                 return (
                   <tr
                     key={id}
                     className=" text-black bg-white/50 border-b dark:bg-gray-800/60 dark:text-gray-50 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600"
                   >
                     <td className="px-3 py-2">{index + 1}</td>
-                    <td className="px-3 py-2">{title}</td>
-                    <td className="px-3 py-2">{destination}</td>
-                    <td className="px-3 py-2">{demographic}</td>
+                    <td className="px-3 py-2">{nssf_no}</td>
+                    <td className="px-3 py-2">{first_name}</td>
+                    <td className="px-3 py-2">{middle_name}</td>
+                    <td className="px-3 py-2">{family_name}</td>
                     <td className="px-3 py-2">
                       {" "}
-                      {new Date(startDate).toLocaleDateString("en-GB")}
+                      {new Date(birthdate).toLocaleDateString("en-GB")}
                     </td>
-                    <td className="px-3 py-2">
-                      {new Date(endDate).toLocaleDateString("en-GB")}
-                    </td>
-                    <td className="px-3 py-2">{pricePerPerson}</td>
-                    <td className="px-3 py-2">{organizer.name}</td>
+                    
+                    <td className="px-3 py-2">{position}</td>                    
                     <td className="px-3 py-2">{status}</td>
-
-                    <td className="px-6 py-4 flex space-x-3">
-                      <Link to={`/admin/activity/${id}`} title="Add Activities">
-                        <FaUmbrellaBeach
-                          size={20}
-                          className="text-yellow-600 hover:text-yellow-800"
-                        />
-                      </Link>
-
-                      <Link
-                        to={`/admin/trans/${id}`}
-                        title="Add Transportation"
-                      >
-                        <FaBusAlt
-                          size={20}
-                          className="text-blue-600 hover:text-blue-800"
-                        />
-                      </Link>
-                      <Link
-                        to={`/admin/emplyees/trip-info/${id}`}
-                        title="Add Emplyee Images"
-                      >
-                        <AiOutlinePicture
-                          size={20}
-                          className="text-purple-600 hover:text-purple-800"
-                        />
-                      </Link>
-                      <Link to={`/admin/emplyees/${id}`} title="Edit Emplyee">
+                    <td>  
+                      <Link to={`emplyees/${id}`} title="Edit Empolyee">
                         <FaEdit
                           size={20}
                           className="text-green-600 hover:text-green-800"
                         />
                       </Link>
                       <button
-                        title="Delete Emplyee"
+                        title="Delete Employee"
                         onClick={() => {
                           confirmDelete(id);
                         }}
@@ -258,4 +233,4 @@ const EmplyeesList = () => {
   );
 };
 
-export default EmplyeesList;
+export default EmployeeList;

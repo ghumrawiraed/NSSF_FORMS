@@ -36,10 +36,11 @@ export const registerEmp = async (empData) => {
 };
 
 //----------------------------------------------------
-//    G E T  A L L   T R I P S
+//    G E T  A L L   E M P S
 //----------------------------------------------------
-const getemps = async () => {
+const getEmps = async () => {
   const reponse = await axios.get(API_URL);
+  console.log("sERVICE RUNNING");
   return reponse.data;
 };
 
@@ -97,7 +98,7 @@ export const updateemp = async (id, empData) => {
 
 const empService = {
   registerEmp,
-  getemps,
+  getEmps,
   getemp,
   deleteemp,
   updateemp,

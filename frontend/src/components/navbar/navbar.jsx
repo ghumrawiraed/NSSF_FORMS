@@ -72,7 +72,7 @@ const Navbar = () => {
               </button>
 
               {openDropdown === index && (
-                <ul className="absolute right-0 mt-2 w-56 bg-white dark:bg-gray-800 shadow-lg rounded-md py-2 text-right z-50">
+                <ul className="absolute right-0 pt-2 w-56 bg-white dark:bg-gray-800 shadow-lg rounded-md py-2 text-right z-50">
                   {dropdown.items.map((item, i) => (
                     <li key={i}>
                       <Link

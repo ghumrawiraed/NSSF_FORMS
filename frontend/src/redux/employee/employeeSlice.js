@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import tripService from "../../../services/tripService";
+import employeeService from "../../services/employeeService";
 import { toast } from "react-toastify";
 const initialState = {
   employee: null,
@@ -15,7 +15,8 @@ export const fetchEmployees = createAsyncThunk(
   "emplyees/getAll",
   async (_, thunkAPI) => {
     try {
-      return await tripService.getEmployees();
+     console.log("Starting API call  slice");
+      return await employeeService.getEmps();
     } catch (error) {
       const message =
         (error.response &&
@@ -36,7 +37,7 @@ export const deleteEmployee = createAsyncThunk(
   async (id, thunkAPI) => {
     try {
       console.log("deleteEmployee Slice :", id);
-      return await tripService.deleteEmployee(id);
+      return await employeeService.deleteEmployee(id);
     } catch (error) {
       const message =
         (error.response &&
@@ -55,7 +56,7 @@ export const getEmployee = createAsyncThunk(
   "emplyees/getEmployee",
   async (id, thunkAPI) => {
     try {
-      return await tripService.getEmployee(id);
+      return await employeeService.getEmployee(id);
     } catch (error) {
       const message =
         (error.response &&
@@ -75,7 +76,7 @@ export const updateEmployee = createAsyncThunk(
   "emplyees/updateEmployee",
   async ({ id, formData }, thunkAPI) => {
     try {
-      return await tripService.updateEmployee(id, formData);
+      return await employeeService.updateEmployee(id, formData);
     } catch (error) {
       const message =
         (error.response &&
@@ -89,7 +90,7 @@ export const updateEmployee = createAsyncThunk(
   },
 );
 
-const tripSlice = createSlice({
+const employeeSlice = createSlice({
   name: "employee",
   initialState,
   reducers: {
@@ -113,7 +114,7 @@ const tripSlice = createSlice({
         state.isSuccess = true;
         state.isError = false;
         console.log(action.payload);
-        state.emplyees = action.payload;
+        state.employees = action.payload;
       })
       //  error getting emplyees case
       .addCase(fetchEmployees.rejected, (state, action) => {
@@ -189,6 +190,6 @@ const tripSlice = createSlice({
 export const selectIsLoading = (state) => state.employee.isLoading;
 export const selectEmployee = (state) => state.employee.employee;
 
-export const { SAVE_EMPLOYEE } = tripSlice.actions;
+export const { SAVE_EMPLOYEE } = employeeSlice.actions;
 
-export default tripSlice.reducer;
+export default employeeSlice.reducer;
