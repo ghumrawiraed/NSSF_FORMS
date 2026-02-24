@@ -32,6 +32,16 @@ export const formSections = {
     { name: "department", label: "الدائرة", type: "text" },
     { name: "blood_group", label: "فئة الدم", type: "text" },
     { name: "nationality", label: "الجنسية", type: "text" },
+      {
+      name: "status",
+      label: "الوضع",
+      type: "select",
+      defaultValue: "حالي",
+      options: [
+        { value: "حالي", label: "حالي" },
+        { value: "سابق", label: "سابق" },
+      ],
+    },
   ],
 
   extra: [

@@ -8,6 +8,8 @@ import FormSelect from "../../components/form/formSelect";
 import {
   updateEmployee,
   getEmployee,
+  selectIsLoading,
+  selectEmployee,
 } from "../../redux/employee/employeeSlice";
 import { toast } from "react-toastify";
 
@@ -17,10 +19,9 @@ const EditEmployeeForm = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { selectedEmployee, isLoading } = useSelector(
-    (state) => state.employee,
-  );
-
+  const  selectedEmployee =  useSelector(selectEmployee);
+  const  isLoading =  useSelector(selectIsLoading);
+  
   const {
     register,
     handleSubmit,
@@ -36,7 +37,7 @@ const EditEmployeeForm = () => {
       dispatch(getEmployee(id));
     }
   }, [id, dispatch]);
-
+  console.log(selectedEmployee)
   // ✅ When employee is loaded → populate form
   useEffect(() => {
     if (selectedEmployee) {
@@ -117,18 +118,19 @@ const EditEmployeeForm = () => {
     });
 
     try {
+      console.log("cleanedData:", cleanedData)
       await dispatch(
-        updateEmployee({ id, employeeData: cleanedData }),
+        updateEmployee({ id, formData: cleanedData }),
       ).unwrap();
 
-      toast.success("Employee Updated Successfully");
+    
       navigate(-1);
     } catch (error) {
       toast.error("Update failed");
       console.log(error);
     }
   };
-
+console.log(selectedEmployee)
   return (
     <div
       className="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8"
@@ -180,15 +182,59 @@ const EditEmployeeForm = () => {
             </div>
           ))}
 
-          {/* Tabs same as before */}
+          
+          {/* Tabs */}
+          <div className="flex flex-wrap justify-center gap-3 border-t pt-6">
+            {[
+              "personal",
+              "extra",
+              "relatives",
+              "work",
+              "wife",
+              "siblings",
+              "notes",
+            ].map((tab) => (
+              <button
+                key={tab}
+                type="button"
+                onClick={() => setActiveTab(tab)}
+                className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
+                  activeTab === tab
+                    ? "bg-indigo-600 text-white shadow-md"
+                    : "bg-indigo-100 text-indigo-700 hover:bg-indigo-200"
+                }`}
+              >
+                {tab === "personal" && "البيانات الشخصية"}
+                {tab === "extra" && "معلومات إضافية"}
+                {tab === "relatives" && "أقاربه المضمونين معه"}
+                {tab === "work" && "معلومات العمل"}
+                {tab === "wife" && "معلومات عن الزوجة"}
+                {tab === "siblings" && "الاشقاء"}
+                {tab === "notes" && "ملاحظات"}
+              </button>
+            ))}
+          </div>
 
+         <div className="flex gap-4 mt-6">
+          {/* Submit Button */}
           <button
             type="submit"
             disabled={isLoading}
-            className="w-full mt-6 px-6 py-3 text-white bg-indigo-600 hover:bg-indigo-700 rounded-xl text-lg font-medium shadow-lg transition duration-200 disabled:opacity-50"
+            className="w-full px-6 py-3 text-white bg-indigo-600 hover:bg-indigo-700 rounded-xl text-lg font-medium shadow-lg transition duration-200 disabled:opacity-50"
           >
             تحديث الموظف
           </button>
+
+              {/* Cancel Button */}
+          <button
+            type="button"
+            onClick={() => navigate(-1)} // or navigate("/employees")
+            className="w-full px-6 py-3 text-gray-700 bg-gray-200 hover:bg-gray-300 rounded-xl text-lg font-medium shadow transition duration-200"
+          >
+            إلغاء
+          </button>
+          
+        </div>
         </form>
       </div>
     </div>

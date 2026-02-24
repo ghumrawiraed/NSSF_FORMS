@@ -76,7 +76,10 @@ export const updateEmployee = createAsyncThunk(
   "emplyees/updateEmployee",
   async ({ id, formData }, thunkAPI) => {
     try {
-      return await employeeService.updateEmployee(id, formData);
+      console.log("UPDATE EMPLOYEE IN SLICE")
+      console.log(formData)
+      
+      return await employeeService.updateEmp(id, formData);
     } catch (error) {
       const message =
         (error.response &&

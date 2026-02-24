@@ -36,7 +36,7 @@ export const registerEmp = async (empData) => {
 };
 
 //----------------------------------------------------
-//    G E T  A L L   E M P S
+//    G E T  A L L   E M P L O Y E E S
 //----------------------------------------------------
 const getEmps = async () => {
   const reponse = await axios.get(API_URL);
@@ -45,7 +45,7 @@ const getEmps = async () => {
 };
 
 //----------------------------------------------------
-//    G E T  S I N G L E   T R I P
+//    G E T  S I N G L E   E M P L O Y E E
 //----------------------------------------------------
 export const getEmp = async (id) => {
   const reponse = await axios.get(API_URL + "/" + id);
@@ -53,7 +53,7 @@ export const getEmp = async (id) => {
 };
 
 //----------------------------------------------------
-//    D E L E T E    T R I P
+//    D E L E T E    E M P L O Y E E
 //----------------------------------------------------
 const deleteEmp = async (id) => {
   console.log("id:", id )
@@ -62,27 +62,21 @@ const deleteEmp = async (id) => {
 };
 
 //----------------------------------------------------
-//    U P D A T E   T R I P
+//    U P D A T E   E M P L O Y E E
 //----------------------------------------------------
 
 export const updateEmp = async (id, empData) => {
   try {
-    const formData = new FormData();
-    formData.append("title", empData.title);
-    formData.append("destination", empData.destination);
-    formData.append("demographic", empData.demographic);
-    formData.append("startDate", empData.startDate);
-    formData.append("endDate", empData.endDate);
-    formData.append("pricePerPerson", empData.pricePerPerson);
-    formData.append("organiserID", empData.organiserID);
-    formData.append("status", empData.status);
-    if (empData.thumbnail) formData.append("thumbnail", empData.thumbnail);
-    const response = await axios.patch(`${API_URL}/${id}`, formData, {
-      withCredentials: true,
-      headers: {
-        "Content-Type": "multipart/form-data",
+    console.log("UPDATE SERVICE RUNNING")
+     console.log("empData:", empData)
+ 
+    const response = await axios.patch(`${API_URL}/${id}`, empData,      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        withCredentials: true,
       },
-    });
+);
 
     if (response.statusText === "OK") {
       toast.success("emp Updated Successfully");
