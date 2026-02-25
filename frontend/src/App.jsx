@@ -7,6 +7,7 @@ import Layout from "./components/layout/layout";
 import EmployeeForm from "./pages/employee/addEmployee";
 import EmployeeList from "./pages/employee/employeeList";
 import EditEmployeeForm from "./pages/employee/updateEmployee";
+import WifeCertificateForm from "./pages/wifeCertificate/addWifeCertificate";
 
 function App() {
   return (
@@ -17,6 +18,9 @@ function App() {
           <Route path="/employee/list" element={<EmployeeList />}></Route>
           <Route path="/employee/add" element={<EmployeeForm />}></Route>
           <Route path="/employee/:id" element={<EditEmployeeForm />}></Route>
+
+          <Route path="/wife-certificate/add" element={<WifeCertificateForm/>}></Route>
+
         </Route>
       </Routes>
 

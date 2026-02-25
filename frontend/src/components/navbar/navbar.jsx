@@ -9,7 +9,7 @@ const Navbar = () => {
       label: "ملف 1",
       items: [
         { name: "الموظفين", to: "/employee/list" },
-        { name: "تصريح عن الزوجة", to: "/wife-declaration" },
+        { name: "تصريح عن الزوجة", to: "/wife-certificate/add" },
         { name: "إعلام استخدام أجير", to: "/hire-notice" },
         { name: "إعلام ترك أجير", to: "/leave-notice" },
         { name: "تصريح عن حادث", to: "/accident-report" },
