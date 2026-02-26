@@ -25,7 +25,7 @@ const tasreehMostafeedRoutes = require("./routes/tasreehMostafeedRoutes");
 const tasreehRoutes       = require("./routes/tasreehRoutes");
 const toConcernRoutes     = require("./routes/toConcernRoutes");
 const wifeCertificateRoutes  = require("./routes/wifeCertificateRoutes");
-
+const PDFroute = require("./routes/PDFroute");
 const crypto = require("crypto");
 const fs = require("fs");
 
@@ -42,6 +42,7 @@ app.use(cors({ origin: "http://localhost:5173", credentials: true }));
 app.use(errorHandler);
 
 // Routes Middleware
+app.use("api/reports", PDFroute);
 app.use("/api/users", userRoutes);
 app.use("/api/employee", employeeRoutes);
 app.use("/api/baraa", baraaRoutes);
@@ -53,7 +54,7 @@ app.use("/api/mostafeed", tasreehMostafeedRoutes);
 app.use("/api/tasree7", tasreehRoutes);
 app.use("/api/concern", toConcernRoutes);
 app.use("/api/wifecert", wifeCertificateRoutes);
-
+app.use("/api/establishment", establishmentRoutes);
 const PORT = process.env.PORT || 5000;
 
 sequelize

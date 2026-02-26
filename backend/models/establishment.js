@@ -97,7 +97,7 @@ module.exports = function(sequelize, DataTypes) {
       comment: "تلفون"
     },
     previous_address: {
-      type: DataTypes.BIGINT,
+      type: DataTypes.TEXT,
       allowNull: true,
       comment: "عنوانها السابق"
     },
@@ -137,7 +137,7 @@ module.exports = function(sequelize, DataTypes) {
       comment: "الحي"
     },
     re_area: {
-      type: DataTypes.BIGINT,
+      type: DataTypes.TEXT,
       allowNull: true,
       comment: "المنطقة العقارية"
     },

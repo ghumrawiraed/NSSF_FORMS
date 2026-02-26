@@ -39,11 +39,12 @@ const navigate = useNavigate()
     onSubmitHandler(data);
   };
 
-  return (
-  <div className="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-gray-900 px-4">
-    <div className="w-full max-w-2xl bg-white/70 dark:bg-gray-800/80 backdrop-blur-md shadow-xl rounded-2xl p-8">
+   return (
 
-      <h2 className="text-2xl font-bold text-center mb-6 text-gray-800 dark:text-gray-100">
+  <div className="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-gray-900/10 px-4">
+    <div className="w-full max-w-4xl bg-white/80 dark:bg-gray-800/50 backdrop-blur-md rounded-2xl shadow-xl p-6 sm:p-8">
+
+      <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-8 text-right border-b pb-4">
         تصريح عن الزوجة
       </h2>
 
@@ -108,6 +109,7 @@ const navigate = useNavigate()
       </form>
     </div>
   </div>
+  
 );
 };
 

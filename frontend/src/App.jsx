@@ -8,6 +8,8 @@ import EmployeeForm from "./pages/employee/addEmployee";
 import EmployeeList from "./pages/employee/employeeList";
 import EditEmployeeForm from "./pages/employee/updateEmployee";
 import WifeCertificateForm from "./pages/wifeCertificate/addWifeCertificate";
+import EditEstablishmentForm from "./pages/establishment/establishment";
+
 
 function App() {
   return (
@@ -18,6 +20,8 @@ function App() {
           <Route path="/employee/list" element={<EmployeeList />}></Route>
           <Route path="/employee/add" element={<EmployeeForm />}></Route>
           <Route path="/employee/:id" element={<EditEmployeeForm />}></Route>
+          
+          <Route path="/establishment" element={<EditEstablishmentForm/>}></Route>
 
           <Route path="/wife-certificate/add" element={<WifeCertificateForm/>}></Route>
 
