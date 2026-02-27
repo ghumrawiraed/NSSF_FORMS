@@ -98,7 +98,14 @@ module.exports = function(sequelize, DataTypes) {
         fields: [
           { name: "emp_ID" },
         ]
-      }
+      },
+      {
+        name: "RelEmployee_idx",
+        using: "BTREE",
+        fields: [
+          { name: "emp_ID" },
+        ]
+      },
     ]
   });
 };

@@ -5,12 +5,13 @@ const router = express.Router();
 
 router.post("/generate", async (req, res) => {
   try {
+    console.log("generate route")
     const { title, sections } = req.body;
 
-    const browser = await puppeteer.launch({ headless: "new" , executablePath: "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",});
+    const browser = await puppeteer.launch({ headless: "new" , executablePath: "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",args: ["--no-sandbox", "--disable-setuid-sandbox"],});
     const page = await browser.newPage();
 
-    const html = `
+   const html = `
       <html dir="rtl">
       <head>
         <meta charset="UTF-8" />
@@ -19,8 +20,8 @@ router.post("/generate", async (req, res) => {
           h1 { text-align: center; }
           h2 { margin-top: 30px; border-bottom: 1px solid #ccc; }
           table { width: 100%; border-collapse: collapse; margin-top: 10px; }
-          td { border: 1px solid #ddd; padding: 8px; }
-          td.label { font-weight: bold; background: #f5f5f5; width: 30%; }
+          td { border: 1px solid #ddd; padding: 8px; color:black; }
+          td.label { font-weight: bold; background: #f5f5f5; width: 30%; color: black }
         </style>
       </head>
       <body>
@@ -47,7 +48,7 @@ router.post("/generate", async (req, res) => {
           .join("")}
       </body>
       </html>
-    `;
+    ` ;
 
     await page.setContent(html, { waitUntil: "networkidle0" });
 
@@ -60,8 +61,9 @@ router.post("/generate", async (req, res) => {
 
     res.set({
       "Content-Type": "application/pdf",
-      "Content-Disposition": "attachment; filename=report.pdf",
+      "Content-Length": pdf.length, 
     });
+console.log("PDF length:", pdf.length);
 
     res.send(pdf);
   } catch (error) {

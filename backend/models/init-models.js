@@ -65,10 +65,14 @@ function initModels(sequelize) {
     as: "employee_info_forms",
     foreignKey: "emp_ID",
   });
-  employee_relatives.belongsTo(employee, { as: "emp", foreignKey: "emp_ID" });
+  employee_relatives.belongsTo(employee, { as: "emp", foreignKey: "emp_ID" ,   targetKey: "ID"});
   employee.hasMany(employee_relatives, {
     as: "employee_relatives",
     foreignKey: "emp_ID",
+    sourceKey: "ID",
+    onDelete: "CASCADE",
+    onUpdate: "CASCADE",
+
   });
   employment_certificate.belongsTo(employee, {
     as: "emp",

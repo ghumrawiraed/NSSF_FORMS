@@ -42,7 +42,7 @@ app.use(cors({ origin: "http://localhost:5173", credentials: true }));
 app.use(errorHandler);
 
 // Routes Middleware
-app.use("api/reports", PDFroute);
+app.use("/api/reports", PDFroute);
 app.use("/api/users", userRoutes);
 app.use("/api/employee", employeeRoutes);
 app.use("/api/baraa", baraaRoutes);

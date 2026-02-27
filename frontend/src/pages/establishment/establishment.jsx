@@ -6,8 +6,9 @@ import { formSections } from "./formSections";
 import FormInput from "../../components/form/formInput";
 import FormSelect from "../../components/form/formSelect";
 import { selectEstablishment, selectIsLoading, getEstablishment , updateEstablishment} from "../../redux/establishment/establishmentSlice";
-
+import { BACKEND_URL } from "../../services/authService";
 import { toast } from "react-toastify";
+const API_URL = `${BACKEND_URL}/api/reports/generate`;
 
 const EditEstablishmentForm = () => {
   const [activeTab, setActiveTab] = useState("main");
@@ -102,7 +103,7 @@ console.log(selectedEstablishment)
 /* report */
 
 const generateReport = async () => {
-  const response = await fetch("/api/reports/generate", {
+  const response = await fetch(API_URL, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

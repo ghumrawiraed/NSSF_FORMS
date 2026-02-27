@@ -5,11 +5,12 @@ const { models } = require("../config/db");
 const { employee } = models;
 
 const crud = require("../controllers/crudController");
+const {addEmployee} = require("../controllers/employeeController");
 const controller = crud(employee);
 
 const router = express.Router();
 
-router.post("/new", controller.create);
+router.post("/new", addEmployee);
 router.get("/:id", controller.getOne);
 router.get("/", controller.getAll);
 router.patch("/:id", controller.update);
